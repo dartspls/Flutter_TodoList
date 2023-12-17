@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo/src/todo_item_list_widget.dart';
+import 'package:todo/src/todo_state.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      ChangeNotifierProvider(create: (_) => TodoState(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -30,7 +34,7 @@ class TodoHome extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
+      body: const TodoItemList(),
     );
   }
 }
-

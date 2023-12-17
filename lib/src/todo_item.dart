@@ -1,12 +1,16 @@
+import 'package:uuid/uuid.dart';
+
 class TodoItem {
   TodoItem({required String title, String? description})
       : created = DateTime.now(),
-        _modiied = DateTime.now() {
+        _modiied = DateTime.now(),
+        id = const Uuid().v1() {
     _title = title;
     _description = description;
   }
 
   final DateTime created;
+  final String id;
 
   String _title = '';
   String? _description;
@@ -18,8 +22,8 @@ class TodoItem {
     _title = newTitle;
   }
 
-  void setDone(bool val) {
-    _done = val;
+  void toggleDone() {
+    _done = !_done;
   }
 
   void setPinned(bool val) {
