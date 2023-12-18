@@ -6,6 +6,9 @@ class TodoState with ChangeNotifier {
     _init();
   }
   Map<String, TodoItem> items = {};
+  bool _pinnedExp = true;
+  bool _openExp = true;
+  bool _doneExp = false;
 
   void _init() async {
     final item1 = TodoItem(title: 'Testing 1', description: 'The first item');
@@ -37,6 +40,25 @@ class TodoState with ChangeNotifier {
       .where((element) => !element.isDone && element.pinned)
       .toList()
     ..sort((a, b) => b.modified.compareTo(a.modified));
+
+  bool get pinnedExp => _pinnedExp;
+  bool get openExp => _openExp;
+  bool get doneExp => _doneExp;
+
+  void togglePinnedExp() {
+    _pinnedExp = !_pinnedExp;
+    notifyListeners();
+  }
+
+  void toggleOpenExp() {
+    _openExp = !_openExp;
+    notifyListeners();
+  }
+
+  void toggleDoneExp() {
+    _doneExp = !_doneExp;
+    notifyListeners();
+  }
 
   void createItem({required String title, String? description}) {
     TodoItem item = TodoItem(title: title, description: description);

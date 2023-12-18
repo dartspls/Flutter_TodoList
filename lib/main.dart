@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo/src/widgets/todo_item_column.dart';
 import 'package:todo/src/widgets/todo_item_input_widget.dart';
 import 'package:todo/src/widgets/todo_item_list_widget.dart';
 import 'package:todo/src/state/todo_state.dart';
@@ -35,7 +36,8 @@ class TodoHome extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: const TodoItemList(),
+      // body: const TodoItemList(),
+      body: const TodoItemCol(),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
