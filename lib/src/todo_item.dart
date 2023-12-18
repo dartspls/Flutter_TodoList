@@ -18,8 +18,12 @@ class TodoItem {
   bool _pinned = false;
   DateTime _modiied;
 
-  void changeTitle(String newTitle) {
-    _title = newTitle;
+  void changeTitle(String title) {
+    _title = title;
+  }
+
+  void changeDesc(String desc) {
+    _description = desc;
   }
 
   void toggleDone() {
@@ -30,8 +34,8 @@ class TodoItem {
     _pinned = val;
   }
 
-  void modify(DateTime dt) {
-    _modiied = dt;
+  void modify() {
+    _modiied = DateTime.now();
   }
 
   String get title => _title;

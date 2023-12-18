@@ -11,7 +11,7 @@ class TodoItemList extends StatelessWidget {
     final state = Provider.of<TodoState>(context);
     return ListView.builder(
       itemBuilder: (context, index) {
-        return TodoTile(itemID: state.items[index].id);
+        return TodoTile(itemID: state.asList[index].id);
       },
       itemCount: state.items.length,
     );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo/src/todo_item.dart';
+import 'package:todo/src/todo_item_input_widget.dart';
 import 'package:todo/src/todo_item_list_widget.dart';
 import 'package:todo/src/todo_state.dart';
 
@@ -35,6 +37,15 @@ class TodoHome extends StatelessWidget {
         title: Text(title),
       ),
       body: const TodoItemList(),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) => const TodoItemInput(),
+          );
+        },
+      ),
     );
   }
 }
