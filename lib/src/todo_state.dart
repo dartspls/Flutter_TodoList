@@ -14,7 +14,8 @@ class TodoState with ChangeNotifier {
     items[item2.id] = item2;
   }
 
-  List<TodoItem> get asList => items.values.toList();
+  List<TodoItem> get asList =>
+      items.values.toList()..sort((a, b) => b.created.compareTo(a.created));
 
   void createItem({required String title, String? description}) {
     TodoItem item = TodoItem(title: title, description: description);

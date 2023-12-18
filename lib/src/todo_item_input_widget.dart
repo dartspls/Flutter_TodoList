@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/src/todo_item.dart';
 import 'package:todo/src/todo_state.dart';
 
 class TodoItemInput extends StatefulWidget {
