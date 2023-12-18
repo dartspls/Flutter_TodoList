@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo/src/todo_item.dart';
+import 'package:todo/src/state/todo_item.dart';
 
 class TodoState with ChangeNotifier {
   TodoState() {
