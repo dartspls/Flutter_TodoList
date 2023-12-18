@@ -58,6 +58,12 @@ class TodoState with ChangeNotifier {
   void editItem(
       {required String itemID, required String title, required String desc}) {
     final item = getByID(itemID);
+
+    // only update if new information differs from old
+    final String original = '${item?.title}${item?.description}';
+    final String changed = '$title$desc';
+    if (original == changed) return;
+
     item?.changeTitle(title);
     item?.changeDesc(desc);
     notifyListeners();

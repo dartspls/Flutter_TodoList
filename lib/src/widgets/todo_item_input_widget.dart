@@ -93,7 +93,7 @@ class _TodoItemInputState extends State<TodoItemInput> {
       ),
       actions: [
         IconButton(
-          onPressed: submit,
+          onPressed: () => Navigator.of(context).pop(),
           icon: const Icon(Icons.cancel_outlined),
         ),
         IconButton(
