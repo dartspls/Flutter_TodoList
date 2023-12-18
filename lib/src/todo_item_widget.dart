@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo/src/todo_item_input_widget.dart';
 import 'package:todo/src/todo_state.dart';
 
 class TodoTile extends StatelessWidget {
@@ -20,6 +21,10 @@ class TodoTile extends StatelessWidget {
       leading: Checkbox(
         value: item.isDone,
         onChanged: (_) => state.toggleItem(itemID),
+      ),
+      onTap: () => showDialog(
+        context: context,
+        builder: (context) => TodoItemInput(itemID: item.id),
       ),
     );
   }
