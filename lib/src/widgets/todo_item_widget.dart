@@ -26,6 +26,12 @@ class TodoTile extends StatelessWidget {
         context: context,
         builder: (context) => TodoItemInput(itemID: item.id),
       ),
+      trailing: IconButton(
+        icon: const Icon(Icons.delete),
+        onPressed: () {
+          state.deleteItem(id: itemID);
+        },
+      ),
     );
   }
 }

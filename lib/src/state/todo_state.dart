@@ -23,6 +23,11 @@ class TodoState with ChangeNotifier {
     notifyListeners();
   }
 
+  void deleteItem({required String id}) {
+    items.remove(id);
+    notifyListeners();
+  }
+
   void editItem(
       {required String itemID, required String title, required String desc}) {
     final item = getByID(itemID);
