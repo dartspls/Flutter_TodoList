@@ -28,9 +28,10 @@ class TodoState with ChangeNotifier {
       items.values.where((element) => element.isDone).toList()
         ..sort((a, b) => b.modified.compareTo(a.modified));
 
-  List<TodoItem> get openItems =>
-      items.values.where((element) => !element.isDone).toList()
-        ..sort((a, b) => b.modified.compareTo(a.modified));
+  List<TodoItem> get openItems => items.values
+      .where((element) => !element.isDone && !element.pinned)
+      .toList()
+    ..sort((a, b) => b.modified.compareTo(a.modified));
 
   List<TodoItem> get pinnedItems => items.values
       .where((element) => !element.isDone && element.pinned)
@@ -45,6 +46,12 @@ class TodoState with ChangeNotifier {
 
   void deleteItem({required String id}) {
     items.remove(id);
+    notifyListeners();
+  }
+
+  void togglePinItem({required String id}) {
+    final item = items[id];
+    item?.setPinned(!item.pinned);
     notifyListeners();
   }
 

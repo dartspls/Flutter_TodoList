@@ -27,9 +27,11 @@ class TodoTile extends StatelessWidget {
         builder: (context) => TodoItemInput(itemID: item.id),
       ),
       trailing: IconButton(
-        icon: const Icon(Icons.delete),
+        icon: item.pinned
+            ? const Icon(Icons.push_pin)
+            : const Icon(Icons.push_pin_outlined),
         onPressed: () {
-          state.deleteItem(id: itemID);
+          state.togglePinItem(id: itemID);
         },
       ),
     );
