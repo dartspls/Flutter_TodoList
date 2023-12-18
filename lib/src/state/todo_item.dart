@@ -20,21 +20,24 @@ class TodoItem {
 
   void changeTitle(String title) {
     _title = title;
+    _modify();
   }
 
   void changeDesc(String desc) {
     _description = desc;
+    _modify();
   }
 
   void toggleDone() {
     _done = !_done;
+    _modify();
   }
 
   void setPinned(bool val) {
     _pinned = val;
   }
 
-  void modify() {
+  void _modify() {
     _modiied = DateTime.now();
   }
 

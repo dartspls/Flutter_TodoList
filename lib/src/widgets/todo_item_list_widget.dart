@@ -9,11 +9,28 @@ class TodoItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = Provider.of<TodoState>(context);
-    return ListView.builder(
-      itemBuilder: (context, index) {
-        return TodoTile(itemID: state.asList[index].id);
-      },
-      itemCount: state.items.length,
+    return ListView(
+      children: [
+        ExpansionTile(
+          key: const PageStorageKey('pinned'),
+          initiallyExpanded: true,
+          title: const Text('Pinned'),
+          children:
+              state.pinnedItems.map((e) => TodoTile(itemID: e.id)).toList(),
+        ),
+        ExpansionTile(
+          key: const PageStorageKey('open'),
+          initiallyExpanded: true,
+          title: const Text('Open'),
+          children: state.openItems.map((e) => TodoTile(itemID: e.id)).toList(),
+        ),
+        ExpansionTile(
+          key: const PageStorageKey('done'),
+          initiallyExpanded: false,
+          title: const Text('Done'),
+          children: state.doneItems.map((e) => TodoTile(itemID: e.id)).toList(),
+        ),
+      ],
     );
   }
 }
