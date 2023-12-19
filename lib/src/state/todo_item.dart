@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uuid/uuid.dart';
 
 class TodoItem {
@@ -7,6 +8,41 @@ class TodoItem {
         id = const Uuid().v1() {
     _title = title;
     _description = description;
+  }
+
+  TodoItem._private({
+    required String title,
+    required String desc,
+    required bool done,
+    required bool pinned,
+    required this.created,
+    required DateTime modified,
+    required this.id,
+  }) : _modiied = modified {
+    _title = title;
+    _description = desc;
+    _done = done;
+    _pinned = pinned;
+  }
+
+  factory TodoItem.fromJson(Map<String, dynamic> data) {
+    final String title = data['title'];
+    final String desc = data['description'];
+    final bool done = data['done'];
+    final bool pinned = data['pinned'];
+    final DateTime created = (data['created'] as Timestamp).toDate();
+    final DateTime modified = (data['modified'] as Timestamp).toDate();
+    final String id = data['id'];
+
+    return TodoItem._private(
+      title: title,
+      desc: desc,
+      done: done,
+      pinned: pinned,
+      created: created,
+      modified: modified,
+      id: id,
+    );
   }
 
   final DateTime created;

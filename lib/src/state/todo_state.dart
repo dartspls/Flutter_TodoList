@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:todo/firebase_options.dart';
 import 'package:todo/src/state/todo_item.dart';
 
 class TodoState with ChangeNotifier {
@@ -9,18 +12,19 @@ class TodoState with ChangeNotifier {
   bool _pinnedExp = true;
   bool _openExp = true;
   bool _doneExp = false;
+  FirebaseFirestore get _db => FirebaseFirestore.instance;
 
   void _init() async {
-    final item1 = TodoItem(title: 'Testing 1', description: 'The first item');
-    final item2 = TodoItem(title: 'Testing 2');
-    items[item1.id] = item1;
-    items[item2.id] = item2;
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
 
-    for (int i = 0; i < 100; i++) {
-      final item = TodoItem(title: 'Item number: $i');
-      items[item.id] = item;
-      await Future.delayed(const Duration(milliseconds: 1));
-    }
+    final data =
+        (await _db.collection('Tasks').doc('PLACEHOLDER DOCUMENT ID').get())
+            .data();
+    if (data == null) return;
+    final item = TodoItem.fromJson(data);
+    items[item.id] = item;
     notifyListeners();
   }
 
