@@ -20,7 +20,7 @@ class TodoState with ChangeNotifier {
     );
 
     final data =
-        (await _db.collection('Tasks').doc('PLACEHOLDER DOCUMENT ID').get())
+        (await _db.collection('Tasks').doc('tu8Ju8LJL9UDkRiDTR46').get())
             .data();
     if (data == null) return;
     final item = TodoItem.fromJson(data);
